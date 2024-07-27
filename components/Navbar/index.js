@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+//position sticky and top-0
 const Navbar = styled('nav')(() => ({
   backgroundColor: '#333',
   color: '#fff',
   width: '100%',
-  position: 'absolute',
+  position: 'sticky',
   top: 0,
-  left: 0,
   zIndex: 1000,
+  padding: '10px 0',
 }));
 
 const ListItem = styled('li')(() => ({
@@ -29,18 +30,16 @@ const Link = styled('a')(() => ({
 
 const TopNavbar = () => {
   return (
-    <div>
-      <Navbar>
-        <ul style={{}}>
-          <ListItem>
-            <Link href={'/'}>Home</Link>
-          </ListItem>
-          <ListItem>
-            <Link href={'/users'}>Users</Link>
-          </ListItem>
-        </ul>
-      </Navbar>
-    </div>
+    <Navbar>
+      <ul>
+        <ListItem>
+          <Link href={'/'}>Home</Link>
+        </ListItem>
+        <ListItem>
+          <Link href={'/users'}>Users</Link>
+        </ListItem>
+      </ul>
+    </Navbar>
   );
 };
 

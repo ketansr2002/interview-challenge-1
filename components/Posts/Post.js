@@ -44,6 +44,26 @@ const Content = styled.div(() => ({
   },
 }));
 
+const UserInfo = styled.div(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: '10px',
+}));
+
+const UserInitials = styled.div(() => ({
+  backgroundColor: '#007bff',
+  color: '#fff',
+  borderRadius: '50%',
+  width: '30px',
+  height: '30px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginRight: '10px',
+  fontSize: '16px',
+  fontWeight: 'bold',
+}));
+
 const Button = styled.button(() => ({
   position: 'absolute',
   bottom: 0,
@@ -63,9 +83,9 @@ const NextButton = styled(Button)`
   right: 10px;
 `;
 
-const Post = ({ post }) => {
+const Post = ({ post, user }) => {
   const carouselRef = useRef(null);
-
+  console.log(user);
   const handleNextClick = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
@@ -84,8 +104,22 @@ const Post = ({ post }) => {
     }
   };
 
+  const getUserInitials = name => {
+    const [firstName, lastName] = name.split(' ');
+    return `${firstName.charAt(0)}${lastName.charAt(0)}`;
+  };
+
   return (
     <PostContainer>
+      <Content>
+        <UserInfo>
+          <UserInitials>{getUserInitials(user.name)}</UserInitials>
+          <div>
+            <div>{user.name}</div>
+            <div>{user.email}</div>
+          </div>
+        </UserInfo>
+      </Content>
       <CarouselContainer>
         <Carousel ref={carouselRef}>
           {post.images.map((image, index) => (
